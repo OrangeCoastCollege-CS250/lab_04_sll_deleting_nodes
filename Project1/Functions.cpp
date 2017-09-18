@@ -49,5 +49,35 @@ void AnyList::deleteNode(int deleteData)
 
 	// Write your code here...
 
+	if (this->count < 1) cerr << "Cannot delete from an empty list.";
+	else {
+		Node *current = this->ptrToFirst;
+		bool isFound = false;
+		if (deleteData == current->getData()) {
+			this->ptrToFirst = current->getPtrToNext();
+			current->~Node();
+			current = NULL;
+			this->count--;
+			isFound = true;
+		}
+		else {
+			Node *trailCurrent = current;
+			current = current->getPtrToNext();
+			while (current != nullptr && !isFound) {
+				if (current->getData() == deleteData) {
+					trailCurrent->setPtrToNext(current->getPtrToNext());
+					current->~Node();
+					current = NULL;
+					trailCurrent = NULL;
+					isFound = true;
+				}
+				else {
+					trailCurrent = current;
+					current = current->getPtrToNext();
+				}
+			}
+		}
+		if (!isFound) cerr << "Item to be deleted is not in the list.";
+	}
 
 }
