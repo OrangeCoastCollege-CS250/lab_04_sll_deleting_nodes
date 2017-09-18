@@ -1,10 +1,5 @@
 /*
-	Badajoz, Sveriano
-
-	CS A250
-	September 18, 2017
-
-	Lab 04
+	(name header)
 */
 
 #include "AnyList.h"
